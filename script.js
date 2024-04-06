@@ -27,7 +27,7 @@ function addToInput(e) {
   for (let i = 0; inputBtns.length > i; i++) {
     if (e.target == inputBtns[i]) {
       if (inputLenght.length >= maxLenght) {
-        return (display.value = "Too much numbers");
+        return (display.value = "Too much numbers press C");
       }
       display.value += inputBtns[i].textContent;
       let inputTxt = display.value;
