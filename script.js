@@ -2,11 +2,15 @@
 
 const display = document.getElementById("display");
 const buttons = document.querySelectorAll(".calculator-btn");
+const calculator = document.getElementById("calculator");
 
 const calcBtn = document.getElementById("calcBtn");
 const clearBtn = document.getElementById("clearBtn");
+const audioBack = new Audio("videoplayback.m4a.wav");
 
 let inputBtns = [];
+let inputLenght = [];
+let maxLenght = 15;
 
 buttons.forEach((el) => {
   if (!el.classList.contains("calc-btn")) {
@@ -17,12 +21,18 @@ buttons.forEach((el) => {
   }
 });
 
-console.log(inputBtns);
+console.log(audioBack);
 
 function addToInput(e) {
   for (let i = 0; inputBtns.length > i; i++) {
     if (e.target == inputBtns[i]) {
+      if (inputLenght.length >= maxLenght) {
+        return (display.value = "Too much numbers");
+      }
       display.value += inputBtns[i].textContent;
+      let inputTxt = display.value;
+      inputLenght = inputTxt.split("");
+      console.log(inputLenght);
     }
   }
 }
@@ -40,5 +50,13 @@ function clear() {
   display.value = "";
 }
 
+function playAudio() {
+  audioBack.play();
+  audioBack.volume = 0.2;
+}
+
 calcBtn.addEventListener("click", calc);
 clearBtn.addEventListener("click", clear);
+window.addEventListener("click", (e) => {
+  buttons.forEach((el) => (el.onclick = playAudio()));
+});
