@@ -48,6 +48,7 @@ function calc() {
 
 function clear() {
   display.value = "";
+  inputLenght = [];
 }
 
 function playAudio() {
